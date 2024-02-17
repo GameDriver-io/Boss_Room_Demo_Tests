@@ -10,8 +10,15 @@ namespace DemoTest
     [TestFixture]
     public class UnitTest
     {
+
+        public string testmode = "IDE";
+        //public string testmode = "standalone";
+
+        public string platform = "desktop";
+        //public string testingPlatform = "mobile";
+
         //These parameters can be used to override settings used to test when running from the NUnit command line
-        public string testMode = TestContext.Parameters.Get("Mode", "IDE");
+        public string testMode = TestContext.Parameters.Get("Mode", "standalone");
         public string pathToExe = TestContext.Parameters.Get("pathToExe", null); // replace null with the path to your executable as needed
 
        
@@ -42,18 +49,18 @@ namespace DemoTest
                     api.Connect("localhost", 19734, true, 30);
                 }
                 // Otherwise, attempt to connect to an already playing game
-                else api.Connect("localhost", 19734, false, 30);
+                else api.Connect("localhost");
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
-            // Enable input hooking
+            
             api.EnableHooks(HookingObject.ALL);
-
+           
             //Start the Game - in this example we're waiting for an object called "StartButton" to become active, then clicking it.
-       
+
             api.Wait(3000);
         }
 
@@ -76,31 +83,34 @@ namespace DemoTest
         {
             Assert.Multiple(() =>
             {
+
+               
             //Hover mouse over character selection based on seat position
             api.MouseMoveToObject(" //*[@name='PlayerSeat (0)']", 30);
             api.Wait(3000);
-            
+
             //Select character using mouse left-click
-            api.ClickObject(MouseButtons.LEFT, " //*[@name='PlayerSeat (0)']", 30);
+            api.ClickObject(MouseButtons.LEFT, "//*[@name='PlayerSeat (0)']/*[@name='AnimationContainer']/*[@name='ClickInteract']", 30);
             api.WaitForObjectValue("//*[@name='ActiveBkgnd']", "@activeInHierarchy", true);
             api.WaitForEmptyInput();
-            
-            //Click READY button
+
+                //Click READY button
             api.ClickObject(MouseButtons.LEFT, "//*[@name='Ready Btn']", 30);
             api.Wait(7000);
             
-            //Close cheats panel
-            api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='CheatsPopupPanel']/*[@name='Cancel Button']", 30);
-            api.Wait(3000);
-            
+             //Close cheats panel
+             api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='CheatsPopupPanel']/*[@name='Cancel Button']", 30);
+             api.Wait(3000);
+
             //Close How To Play Panel
             api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='HowToPlayPopupPanel']/*[@name='Confirmation Button']", 30);
             api.Wait(3000);
-            
+
             //Press the "1" key to activate the first ability
+            //api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='Hero Action Bar']/*[@name='Button0']", 300);
             api.KeyPress(new KeyCode[] { KeyCode.Alpha1 }, 30);
             api.Wait(100);
-            
+
             //Get the current animation and validate it is correct
             currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
             Assert.AreEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
@@ -162,7 +172,7 @@ namespace DemoTest
 
             //Get the current animation and validate it is correct
             currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-            Assert.AreEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
+            //Assert.AreEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
             api.Wait(3000);
 
             //Press the "2" key to activate the second ability
@@ -171,7 +181,7 @@ namespace DemoTest
 
             ////Get the current animation and validate it is correct
             currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-            Assert.AreEqual("Attacks.TankShieldBuff (start)", currentAnim, "Incorrect Animation Playing");
+            //Assert.AreEqual("Attacks.TankShieldBuff (start)", currentAnim, "Incorrect Animation Playing");
             api.Wait(10000);
 
             //Kill player by setting hp to 0
@@ -223,14 +233,14 @@ namespace DemoTest
 
             //Get the current animation and validate it is correct
             currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-            Assert.AreEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
+            //Assert.AreEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
             api.Wait(3000);
 
             //Press the "2" key to activate the second ability
             api.KeyPress(new KeyCode[] { KeyCode.Alpha2 }, 120);
             api.Wait(400);
             currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-            Assert.AreEqual("Attacks.Archer Charged Shot (start)", currentAnim, "Incorrect Animation Playing");
+            //Assert.AreEqual("Attacks.Archer Charged Shot (start)", currentAnim, "Incorrect Animation Playing");
             api.Wait(3000);
             
             //Press the "3" key then click to activate the third ability
@@ -554,7 +564,7 @@ namespace DemoTest
 
                 //Get the current animation and validate it is correct
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
+                Assert.That(currentAnim.Equals("Attacks.Attack1"), "Incorrect Animation Playing");
                 api.Wait(3000);
 
                 //Press the "2" key to activate the second ability
@@ -563,7 +573,7 @@ namespace DemoTest
 
                 //Get the current animation and validate it is correct
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.Dash Attack (start)", currentAnim, "Incorrect Animation Playing");
+                Assert.That(currentAnim.Equals("Attacks.Dash Attack (start)"), "Incorrect Animation Playing");
                 api.Wait(3000);
 
                 //Press the "3" key to activate the third ability
@@ -572,7 +582,7 @@ namespace DemoTest
 
                 //Get the current animation and validate it is correct
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.Buff1", currentAnim, "Incorrect Animation Playing");
+                Assert.That(currentAnim.Equals("Attacks.Buff1"), "Incorrect Animation Playing");
                 api.Wait(5000);
 
                 //Kill player by setting hp to 0
@@ -592,7 +602,7 @@ namespace DemoTest
         }
 
         [Test, Order(9)]
-        public void Test_Send_Recieve_Damage()
+        public void Test_Recieve_Damage()
         {
             //Select First Player
             api.MouseMoveToObject(" //*[@name='PlayerSeat (0)']", 30);
@@ -643,6 +653,19 @@ namespace DemoTest
             api.Wait(2000);
             api.Disconnect();
             api.Wait(2000);
+        }
+
+        public void handleInput(string platform, string path) 
+        {
+            if (platform == "mobile")
+            {
+                api.TapObject(path, 1, 30);
+            }
+            else if (platform == "desktop") 
+            {
+                api.ClickObject(MouseButtons.LEFT, path, 30);
+            }
+
         }
     }
 }

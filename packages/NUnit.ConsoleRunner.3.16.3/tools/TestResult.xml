@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-run id="0" runstate="Runnable" testcasecount="10" result="Failed" total="10" passed="10" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="15" engine-version="3.16.3.0" clr-version="4.0.30319.42000" start-time="2024-01-29 18:43:32Z" end-time="2024-01-29 18:49:32Z" duration="360.782636">
+  <command-line><![CDATA[C:\Users\Hunter\source\repos\Boss_Room_Tests\packages\NUnit.ConsoleRunner.3.16.3\tools\nunit3-console.exe C:/Users/Hunter/source/repos/Boss_Room_Tests/Boss_Room_Tests/bin/Debug/Boss_Room_Tests.dll]]></command-line>
+  <test-suite type="Assembly" id="1-1011" name="Boss_Room_Tests.dll" fullname="C:\Users\Hunter\source\repos\Boss_Room_Tests\Boss_Room_Tests\bin\Debug\Boss_Room_Tests.dll" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2024-01-29T18:43:32.9099990Z" end-time="2024-01-29T18:49:32.8317799Z" duration="359.921079" total="10" passed="10" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="15">
+    <environment framework-version="3.14.0.0" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 10.0.19045.0" platform="Win32NT" cwd="C:\Users\Hunter\source\repos\Boss_Room_Tests\packages\NUnit.ConsoleRunner.3.16.3\tools" machine-name="DESKTOP-P1OJJVK" user="Hunter" user-domain="DESKTOP-P1OJJVK" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="DisposeRunners" value="True" />
+      <setting name="WorkDirectory" value="C:\Users\Hunter\source\repos\Boss_Room_Tests\packages\NUnit.ConsoleRunner.3.16.3\tools" />
+      <setting name="ImageRuntimeVersion" value="4.0.30319" />
+      <setting name="ImageTargetFrameworkName" value=".NETFramework,Version=v4.7.2" />
+      <setting name="ImageRequiresX86" value="False" />
+      <setting name="ImageRequiresDefaultAppDomainAssemblyResolver" value="False" />
+      <setting name="TargetRuntimeFramework" value="net-4.7.2" />
+      <setting name="NumberOfTestWorkers" value="16" />
+    </settings>
+    <properties>
+      <property name="_PID" value="26336" />
+      <property name="_APPDOMAIN" value="domain-" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="1-1012" name="DemoTest" fullname="DemoTest" runstate="Runnable" testcasecount="10" result="Failed" site="Child" start-time="2024-01-29T18:43:32.9249905Z" end-time="2024-01-29T18:49:32.8317799Z" duration="359.906139" total="10" passed="10" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="15">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestFixture" id="1-1000" name="UnitTest" fullname="DemoTest.UnitTest" classname="DemoTest.UnitTest" runstate="Runnable" testcasecount="10" result="Failed" label="Error" site="TearDown" start-time="2024-01-29T18:43:32.9279919Z" end-time="2024-01-29T18:49:32.8307797Z" duration="359.902827" total="10" passed="10" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="15">
+        <failure>
+          <message><![CDATA[TearDown : System.FormatException : An invalid IP address was specified.]]></message>
+          <stack-trace><![CDATA[--TearDown
+   at System.Net.IPAddress.InternalParse(String ipString, Boolean tryParse)
+   at gdio.unity_api.v2.ApiClient.StopEditorPlay()
+   at DemoTest.UnitTest.Disconnect() in C:\Users\Hunter\source\repos\Boss_Room_Tests\Boss_Room_Tests\Class1.cs:line 651]]></stack-trace>
+        </failure>
+        <test-case id="1-1001" name="StartSinglePlayerLobby" fullname="DemoTest.UnitTest.StartSinglePlayerLobby" methodname="StartSinglePlayerLobby" classname="DemoTest.UnitTest" runstate="Runnable" seed="588463008" result="Passed" start-time="2024-01-29T18:43:36.5742887Z" end-time="2024-01-29T18:43:45.7822240Z" duration="9.208806" asserts="0">
+          <properties>
+            <property name="Order" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1-1002" name="T01_Female_Tank_Class_Smoke_Tests" fullname="DemoTest.UnitTest.T01_Female_Tank_Class_Smoke_Tests" methodname="T01_Female_Tank_Class_Smoke_Tests" classname="DemoTest.UnitTest" runstate="Runnable" seed="2146903742" result="Passed" start-time="2024-01-29T18:43:45.7852260Z" end-time="2024-01-29T18:44:27.6442044Z" duration="41.859567" asserts="2">
+          <properties>
+            <property name="Order" value="1" />
+          </properties>
+          <output><![CDATA[Waiting for event: Evt_EmptyInput: f593fee8-81b0-454e-abf8-76ba455b5134
+]]></output>
+        </test-case>
+        <test-case id="1-1003" name="T02_Male_Tank_Class_Smoke_Tests" fullname="DemoTest.UnitTest.T02_Male_Tank_Class_Smoke_Tests" methodname="T02_Male_Tank_Class_Smoke_Tests" classname="DemoTest.UnitTest" runstate="Runnable" seed="555026095" result="Passed" start-time="2024-01-29T18:44:27.6452038Z" end-time="2024-01-29T18:45:09.0975082Z" duration="41.452507" asserts="0">
+          <properties>
+            <property name="Order" value="2" />
+          </properties>
+          <output><![CDATA[Waiting for event: Evt_EmptyInput: fcf3d828-963a-4699-82db-36c2186c7e42
+]]></output>
+        </test-case>
+        <test-case id="1-1004" name="T03_Female_Ranger_Class_Smoke_Tests" fullname="DemoTest.UnitTest.T03_Female_Ranger_Class_Smoke_Tests" methodname="T03_Female_Ranger_Class_Smoke_Tests" classname="DemoTest.UnitTest" runstate="Runnable" seed="353376819" result="Passed" start-time="2024-01-29T18:45:09.0975082Z" end-time="2024-01-29T18:45:50.7342646Z" duration="41.636662" asserts="0">
+          <properties>
+            <property name="Order" value="3" />
+          </properties>
+          <output><![CDATA[Waiting for event: Evt_EmptyInput: 8cc48291-5dfc-4ac7-b0ce-a9d16f0b54cc
+]]></output>
+        </test-case>
+        <test-case id="1-1005" name="T04_Male_Ranger_Class_Smoke_Tests" fullname="DemoTest.UnitTest.T04_Male_Ranger_Class_Smoke_Tests" methodname="T04_Male_Ranger_Class_Smoke_Tests" classname="DemoTest.UnitTest" runstate="Runnable" seed="1857080201" result="Passed" start-time="2024-01-29T18:45:50.7342646Z" end-time="2024-01-29T18:46:32.1288986Z" duration="41.394537" asserts="2">
+          <properties>
+            <property name="Order" value="4" />
+          </properties>
+          <output><![CDATA[Waiting for event: Evt_EmptyInput: f397b438-ecaa-48d1-abf1-e3da44e039ac
+]]></output>
+        </test-case>
+        <test-case id="1-1006" name="T05_Female_Healer_Class_Smoke_Tests" fullname="DemoTest.UnitTest.T05_Female_Healer_Class_Smoke_Tests" methodname="T05_Female_Healer_Class_Smoke_Tests" classname="DemoTest.UnitTest" runstate="Runnable" seed="1010502237" result="Passed" start-time="2024-01-29T18:46:32.1288986Z" end-time="2024-01-29T18:47:10.2375312Z" duration="38.108471" asserts="2">
+          <properties>
+            <property name="Order" value="5" />
+          </properties>
+          <output><![CDATA[Waiting for event: Evt_EmptyInput: 9a6ffb5c-7907-4712-aa40-2aa353672929
+]]></output>
+        </test-case>
+        <test-case id="1-1007" name="T06_Male_Healer_Class_Smoke_Tests" fullname="DemoTest.UnitTest.T06_Male_Healer_Class_Smoke_Tests" methodname="T06_Male_Healer_Class_Smoke_Tests" classname="DemoTest.UnitTest" runstate="Runnable" seed="1939148543" result="Passed" start-time="2024-01-29T18:47:10.2375312Z" end-time="2024-01-29T18:47:48.1454984Z" duration="37.907882" asserts="2">
+          <properties>
+            <property name="Order" value="6" />
+          </properties>
+          <output><![CDATA[Waiting for event: Evt_EmptyInput: 565b1090-a4f1-4f82-83e4-ce8ca9bb2c03
+]]></output>
+        </test-case>
+        <test-case id="1-1008" name="T07_Female_Rogue_Class_Smoke_Tests" fullname="DemoTest.UnitTest.T07_Female_Rogue_Class_Smoke_Tests" methodname="T07_Female_Rogue_Class_Smoke_Tests" classname="DemoTest.UnitTest" runstate="Runnable" seed="1056977821" result="Passed" start-time="2024-01-29T18:47:48.1454984Z" end-time="2024-01-29T18:48:28.8840649Z" duration="40.738513" asserts="3">
+          <properties>
+            <property name="Order" value="7" />
+          </properties>
+          <output><![CDATA[Waiting for event: Evt_EmptyInput: e2e83177-6c5f-4f58-a0a6-196ca9ae23b2
+]]></output>
+        </test-case>
+        <test-case id="1-1009" name="T08_Male_Rogue_Class_Smoke_Tests" fullname="DemoTest.UnitTest.T08_Male_Rogue_Class_Smoke_Tests" methodname="T08_Male_Rogue_Class_Smoke_Tests" classname="DemoTest.UnitTest" runstate="Runnable" seed="2145156689" result="Passed" start-time="2024-01-29T18:48:28.8840649Z" end-time="2024-01-29T18:49:09.9613931Z" duration="41.077192" asserts="3">
+          <properties>
+            <property name="Order" value="8" />
+          </properties>
+          <output><![CDATA[Waiting for event: Evt_EmptyInput: 811348a6-e5e5-496e-bd98-7460f6a52f5f
+]]></output>
+        </test-case>
+        <test-case id="1-1010" name="Test_Send_Recieve_Damage" fullname="DemoTest.UnitTest.Test_Send_Recieve_Damage" methodname="Test_Send_Recieve_Damage" classname="DemoTest.UnitTest" runstate="Runnable" seed="1655170422" result="Passed" start-time="2024-01-29T18:49:09.9613931Z" end-time="2024-01-29T18:49:32.7857684Z" duration="22.824350" asserts="1">
+          <properties>
+            <property name="Order" value="9" />
+          </properties>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
