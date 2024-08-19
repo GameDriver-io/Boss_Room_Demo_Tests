@@ -13,6 +13,6 @@ C:\Users\Hunter\source\repos\Boss_Room_Tests\Boss_Room_Tests\bin\Debug\nunit.fra
 C:\Users\Hunter\source\repos\Boss_Room_Tests\Boss_Room_Tests\bin\Debug\nunit.framework.xml
 C:\Users\Hunter\source\repos\Boss_Room_Tests\Boss_Room_Tests\obj\Debug\Boss_Room_Tests.csproj.AssemblyReference.cache
 C:\Users\Hunter\source\repos\Boss_Room_Tests\Boss_Room_Tests\obj\Debug\Boss_Room_Tests.csproj.CoreCompileInputs.cache
-C:\Users\Hunter\source\repos\Boss_Room_Tests\Boss_Room_Tests\obj\Debug\Boss_Room_Tests.csproj.CopyComplete
+C:\Users\Hunter\source\repos\Boss_Room_Tests\Boss_Room_Tests\obj\Debug\Boss_Roo.4E35F654.Up2Date
 C:\Users\Hunter\source\repos\Boss_Room_Tests\Boss_Room_Tests\obj\Debug\Boss_Room_Tests.dll
 C:\Users\Hunter\source\repos\Boss_Room_Tests\Boss_Room_Tests\obj\Debug\Boss_Room_Tests.pdb

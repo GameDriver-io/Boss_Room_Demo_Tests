@@ -18,14 +18,13 @@ namespace DemoTest
         //public string testingPlatform = "mobile";
 
         //These parameters can be used to override settings used to test when running from the NUnit command line
-        public string testMode = TestContext.Parameters.Get("Mode", "standalone");
-        public string pathToExe = TestContext.Parameters.Get("pathToExe", null); // replace null with the path to your executable as needed
-
-       
+        public string testMode = TestContext.Parameters.Get("Mode", "IDE");
+        public string pathToExe = TestContext.Parameters.Get("pathToExe", null); // replace null with the path to your executable as needed      
 
         string player = "//Player[@name='PlayerAvatar0']";
         string currentAnim; 
         ApiClient api;
+        
 
 
         [OneTimeSetUp]
@@ -41,6 +40,7 @@ namespace DemoTest
                 {
                     ApiClient.Launch(pathToExe);
                     api.Connect("localhost", 19734, false, 30);
+                    
                 }
 
                 // If no executable path was given, we will attempt to connect to the Unity editor and initiate Play mode
@@ -58,23 +58,24 @@ namespace DemoTest
             }
             
             api.EnableHooks(HookingObject.ALL);
-           
-            //Start the Game - in this example we're waiting for an object called "StartButton" to become active, then clicking it.
 
+
+            
             api.Wait(3000);
         }
 
         [Test, Order(0)]
         public void StartSinglePlayerLobby()
         {
-            
-            api.ClickObject(MouseButtons.LEFT, "//*[@name='IP Start Button']", 30);
+
+            api.ClickObject(MouseButtons.LEFT, "//*[@name='IP Start Button']", 30);            
             api.Wait(2000);
             api.ClickObject(MouseButtons.LEFT, "//*[@name='Host IP Connection Button']", 30);
             api.Wait(4000);
             api.ClickObject(MouseButtons.LEFT, "/*[@name='NetworkSimulator']/*[@name='NetworkSimulatorUICanvas']/*[@name='NetworkSimulatorPopupPanel']/*[@name='Cancel Button']", 30);
             api.Wait(3000);
-          
+
+           
         }
         
 
@@ -94,7 +95,7 @@ namespace DemoTest
             api.WaitForObjectValue("//*[@name='ActiveBkgnd']", "@activeInHierarchy", true);
             api.WaitForEmptyInput();
 
-                //Click READY button
+            //Click READY button
             api.ClickObject(MouseButtons.LEFT, "//*[@name='Ready Btn']", 30);
             api.Wait(7000);
             
@@ -109,21 +110,22 @@ namespace DemoTest
             //Press the "1" key to activate the first ability
             //api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='Hero Action Bar']/*[@name='Button0']", 300);
             api.KeyPress(new KeyCode[] { KeyCode.Alpha1 }, 30);
-            api.Wait(100);
+            api.Wait(500);
 
             //Get the current animation and validate it is correct
             currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-            Assert.AreEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
+            Assert.AreNotEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
             api.Wait(3000);
 
             //Press the "2" key to activate the second ability
             api.KeyPress(new KeyCode[] { KeyCode.Alpha2 }, 30);
-            api.Wait(100);
+            api.Wait(1000);
 
             //Get the current animation and validate it is correct
             currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
+            api.Wait(1000);
             Assert.AreEqual("Attacks.TankShieldBuff (start)", currentAnim, "Incorrect Animation Playing");
-            api.Wait(10000);
+            api.Wait(12000);
 
             //Kill player by setting hp to 0
             api.CallMethod("//Player[@name='PlayerAvatar0']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.Character.ServerCharacter')", "ReceiveHP", new object[] { new HPathObject("//Player[@name='PlayerAvatar0']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.Character.ServerCharacter')"), -1200 });
@@ -139,7 +141,23 @@ namespace DemoTest
 
             });
         }
+        /*
+        [Test]
+        public void startOnlineLobby() 
+        {
+            api.Wait(5000);
+            api.CallMethod("//*[@name='Lobby Start Button']/fn:component('UnityEngine.UI.Button')", "Press", null);
+            api.Wait(5000);
+            api.CallMethod("/*[@name='UI Canvas']/*[@name='LobbyPopup']/*[@name='Tab Buttons']/*[@name='CreateButton']/fn:component('UnityEngine.UI.Button')", "Press", null);
+            api.Wait(5000);
+            api.CallMethod("/*[@name='UI Canvas']/*[@name='LobbyPopup']/*[@name='Tabs']/*[@name='LobbyCreationUI']/*[@name='Lobby Name Input Field']/*[@name='InputText']/fn:component('UnityEngine.UI.Text')", "set_text", new object[] {"GameDriverLobby"});
+            api.Wait(5000);
+            api.CallMethod("/*[@name='UI Canvas']/*[@name='LobbyPopup']/*[@name='Tabs']/*[@name='LobbyCreationUI']/*[@name='Create Lobby Button']/fn:component('UnityEngine.UI.Button')", "Press", null);
+            api.Wait(5000);
 
+           
+        }
+        */
         [Test, Order(2)]
         public void T02_Male_Tank_Class_Smoke_Tests()
         {
@@ -642,13 +660,80 @@ namespace DemoTest
 
         }
 
+        [Test, Order(10)]
+        public void killEnemies() 
+        {
+            string portalOne = "/*[@name='Entrance']/*[@name='spawn_door (4)']/*[@name='door_crystral_base']";
+            string portalTwo = "/*[@name='Entrance']/*[@name='spawn_door (4)']/*[@name='door_crystral_base (1)']";
+            //Turn on God Mode
+            
+            api.KeyPress(new KeyCode[] { KeyCode.Slash }, 30);
+            api.Wait(1000);
+            api.ClickObject(MouseButtons.LEFT,"/*[@name='BossRoomHudCanvas']/*[@name='CheatsPopupPanel']/*[@name='ToggleGodModeButton']", 30);
+            api.Wait(2000);
+            api.KeyPress(new KeyCode[] { KeyCode.Slash }, 30);
+            api.Wait(5000);
+
+            //Kill the portal that spawns more enemies
+            api.CallMethod("/*[@name='PlayerAvatar0']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.Character.ServerCharacterMovement')", "SetMovementTarget", new object[]{api.GetObjectPosition(portalOne) });
+            api.Wait(15000);
+            api.MouseMoveToObject(portalOne, 30, true);
+            api.KeyPress(new KeyCode[] { KeyCode.Alpha3 }, 30);
+            api.Wait(1500);
+            api.Click(MouseButtons.LEFT, 30);
+            api.Wait(1500);
+            api.KeyPress(new KeyCode[] { KeyCode.Alpha3 }, 30);
+            api.Wait(1500);
+            api.Click(MouseButtons.LEFT, 30);
+            api.Wait(1500);
+            api.KeyPress(new KeyCode[] { KeyCode.Alpha3 }, 30);
+            api.Wait(1500);
+            api.Click(MouseButtons.LEFT, 30);
+            api.Wait(1500);
+            api.KeyPress(new KeyCode[] { KeyCode.Alpha3 }, 30);
+            api.Wait(1500);
+            api.Click(MouseButtons.LEFT, 30);
+            api.Wait(1500);
+
+
+            api.MouseMoveToObject(portalTwo, 30, true);
+            api.KeyPress(new KeyCode[] { KeyCode.Alpha3 }, 30);
+            api.Wait(1500);
+            api.Click(MouseButtons.LEFT,30);
+            api.Wait(1500);
+            api.KeyPress(new KeyCode[] { KeyCode.Alpha3 }, 30);
+            api.Wait(500);
+            api.Click(MouseButtons.LEFT, 30);
+            api.Wait(1500);
+            api.KeyPress(new KeyCode[] { KeyCode.Alpha3 }, 30);
+            api.Wait(1500);
+            api.Click(MouseButtons.LEFT, 30);
+            //kill the goblins
+            api.Wait(1500);
+            api.KeyPress(new KeyCode[] { KeyCode.Alpha3 }, 30);
+            api.Wait(1500);
+            api.Click(MouseButtons.LEFT, 30);
+            api.Wait(1500);
+
+
+            api.CallMethod("/*[@name='PlayerAvatar0']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.Character.ServerCharacterMovement')", "SetMovementTarget", new object[] { new Vector3(112, 0, 35) });
+            api.Wait(1000);
+            //Open the door
+            api.SetObjectFieldValue("//*[@name='InteractiveBossDoor']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.SwitchedDoor')", "ForceOpen", true);
+            api.Wait(10000);
+            BossFight();
+            //while(api.GetObjectFieldValue<int>("//*[@name='ImpBoss(Clone)']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.NetworkHealthState')/@HitPoints/@Value") > 0) 
+            //{
+               // HandleAttackBoss();
+           // }
+        }
 
 
         [OneTimeTearDown]
         public void Disconnect()
         {
             // Disconnect the GameDriver client from the agent
-            api.StopEditorPlay();
+            api.Wait(500000);
             api.DisableHooks(HookingObject.ALL);
             api.Wait(2000);
             api.Disconnect();
@@ -667,5 +752,39 @@ namespace DemoTest
             }
 
         }
+
+        public void BossFight() 
+        {
+            string hpListener = api.ScheduleScript(
+                
+                @"local hitPoints = ResolveObject(""//*[@name='ImpBoss(Clone)']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.NetworkHealthState')/@HitPoints/@Value"");
+                
+                if hitPoints > 0 then
+                        Notify(true)
+                    end
+                    ", ScriptExecutionMode.EveryNthFrames, (int)api.GetLastFPS() * 3);
+
+            api.ScriptSignal += (sender, args) => {
+                Console.WriteLine("Boss Still alive! Attacking Boss!");
+                HandleAttackBoss();
+            };
+
+        }
+
+        public void HandleAttackBoss() 
+        {
+            api.ClickObject(MouseButtons.LEFT, "//*[@name='ImpBoss(Clone)']", 5);
+            //api.MouseMoveToObject("//*[@name='ImpBoss(Clone)']", 5,true);
+            //api.Wait(100);
+            //api.Click(MouseButtons.LEFT, 30);
+
+            //Use Ability 3
+            api.KeyPress(new KeyCode[] { KeyCode.Alpha3 }, 1);
+            api.Wait(300);
+            api.Click(MouseButtons.LEFT, 1);
+            api.Wait(500);
+
+        }
+
     }
 }

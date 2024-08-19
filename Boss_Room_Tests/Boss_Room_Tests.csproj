@@ -35,14 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="gdio.common.objects">
-      <HintPath>..\..\..\..\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.common.objects.dll</HintPath>
+    <Reference Include="gdio.common.objects, Version=2024.5.6.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\BossRoom\New folder\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.common.objects.dll</HintPath>
     </Reference>
-    <Reference Include="gdio.plugin.serializer">
-      <HintPath>..\..\..\..\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.plugin.serializer.dll</HintPath>
+    <Reference Include="gdio.plugin.serializer, Version=2024.5.6.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\BossRoom\New folder\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.plugin.serializer.dll</HintPath>
     </Reference>
-    <Reference Include="gdio.unity_api">
-      <HintPath>..\..\..\..\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.unity_api.dll</HintPath>
+    <Reference Include="gdio.unity_api, Version=2024.5.6.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\BossRoom\New folder\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.unity_api.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.14.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.14.0\lib\net45\nunit.framework.dll</HintPath>
