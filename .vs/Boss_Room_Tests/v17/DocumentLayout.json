@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Hunter\\source\\repos\\Boss_Room_Tests\\",
+  "WorkspaceRootPath": "E:\\Backup\\GDIO\\Tests\\Boss_Room_Demo_Tests\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C4411B21-2E75-4CE4-9E96-D0A5E59A2631}|Boss_Room_Tests\\Boss_Room_Tests.csproj|c:\\users\\hunter\\source\\repos\\boss_room_tests\\boss_room_tests\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C4411B21-2E75-4CE4-9E96-D0A5E59A2631}|Boss_Room_Tests\\Boss_Room_Tests.csproj|e:\\backup\\gdio\\tests\\boss_room_demo_tests\\boss_room_tests\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C4411B21-2E75-4CE4-9E96-D0A5E59A2631}|Boss_Room_Tests\\Boss_Room_Tests.csproj|solutionrelative:boss_room_tests\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -14,17 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\Hunter\\source\\repos\\Boss_Room_Tests\\Boss_Room_Tests\\Class1.cs",
+              "DocumentMoniker": "E:\\Backup\\GDIO\\Tests\\Boss_Room_Demo_Tests\\Boss_Room_Tests\\Class1.cs",
               "RelativeDocumentMoniker": "Boss_Room_Tests\\Class1.cs",
-              "ToolTip": "C:\\Users\\Hunter\\source\\repos\\Boss_Room_Tests\\Boss_Room_Tests\\Class1.cs",
+              "ToolTip": "E:\\Backup\\GDIO\\Tests\\Boss_Room_Demo_Tests\\Boss_Room_Tests\\Class1.cs",
               "RelativeToolTip": "Boss_Room_Tests\\Class1.cs",
-              "ViewState": "AQIAAM0CAAAAAAAAAAAAAN8CAAAMAAAA",
+              "ViewState": "AQIAAJkCAAAAAAAAAAAcwMECAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2023-11-07T17:45:45.197Z",
               "EditorCaption": ""
