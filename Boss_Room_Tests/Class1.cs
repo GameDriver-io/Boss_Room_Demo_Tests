@@ -739,7 +739,7 @@ namespace DemoTest
                 //Wait for Loading screen to open and close
                 //api.WaitForObjectValue("//*[@name='LoadingScreen']/fn:component('UnityEngine.CanvasGroup')", "@alpha", 1, true, 60);
                 //api.WaitForObjectValue("//*[@name='LoadingScreen']/fn:component('UnityEngine.CanvasGroup')", "@alpha", 0, true, 60);
-                api.Wait(5000);
+                api.Wait(15000);
 
                 //Click "Play Again"
                 api.ClickObject(MouseButtons.LEFT, "//*[@name='PlayAgainBtn']", 30);
@@ -829,14 +829,17 @@ namespace DemoTest
         {
             string portalOne = "/*[@name='Entrance']/*[@name='spawn_door (4)']/*[@name='door_crystral_base']";
             string portalTwo = "/*[@name='Entrance']/*[@name='spawn_door (4)']/*[@name='door_crystral_base (1)']";
-            //Turn on God Mode
 
+            //Turn on God Mode
+            /*
             api.KeyPress(new KeyCode[] { KeyCode.Slash }, 30);
             api.Wait(1000);
             api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='CheatsPopupPanel']/*[@name='ToggleGodModeButton']", 30);
             api.Wait(2000);
             api.KeyPress(new KeyCode[] { KeyCode.Slash }, 30);
             api.Wait(5000);
+            */
+            api.CallMethod("//*[@name='DebugCheatsManager']/fn:component('Unity.BossRoom.DebugCheats.DebugCheatsManager')", "ToggleGodMode");
 
             //Kill the portal that spawns more enemies
             api.CallMethod("/*[@name='PlayerAvatar0']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.Character.ServerCharacterMovement')", "SetMovementTarget", new object[] { api.GetObjectPosition(portalOne) });

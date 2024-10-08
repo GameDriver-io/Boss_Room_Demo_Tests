@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\NUnit.3.14.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.14.0\build\NUnit.props')" />
   <Import Project="..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -35,18 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="gdio.common.objects, Version=2024.7.23.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Builds\gdio.unity.2024906233902.GCORE-1037.c77a5c0\2022.3.18f1\gdio_api.packed\net471\gdio.common.objects.dll</HintPath>
-    </Reference>
-    <Reference Include="gdio.plugin.serializer, Version=2024.7.23.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Builds\gdio.unity.2024906233902.GCORE-1037.c77a5c0\2022.3.18f1\gdio_api.packed\net471\gdio.plugin.serializer.dll</HintPath>
-    </Reference>
-    <Reference Include="gdio.unity_api, Version=2024.7.23.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Builds\gdio.unity.2024906233902.GCORE-1037.c77a5c0\2022.3.18f1\gdio_api.packed\net471\gdio.unity_api.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework, Version=3.14.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.14.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -58,6 +46,15 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="gdio.unity_api">
+      <HintPath>..\..\..\Projects\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.unity_api.dll</HintPath>
+    </Reference>
+    <Reference Include="gdio.plugin.serializer">
+      <HintPath>..\..\..\Projects\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.plugin.serializer.dll</HintPath>
+    </Reference>
+    <Reference Include="gdio.common.objects">
+      <HintPath>..\..\..\Projects\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.common.objects.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
