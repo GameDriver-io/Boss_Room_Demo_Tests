@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\NUnit.3.14.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.14.0\build\NUnit.props')" />
   <Import Project="..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.4.5.0\build\net462\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -55,6 +55,15 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="gdio.unity_api">
+      <HintPath>..\..\..\Projects\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.unity_api.dll</HintPath>
+    </Reference>
+    <Reference Include="gdio.plugin.serializer">
+      <HintPath>..\..\..\Projects\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.plugin.serializer.dll</HintPath>
+    </Reference>
+    <Reference Include="gdio.common.objects">
+      <HintPath>..\..\..\Projects\com.unity.multiplayer.samples.coop\Assets\GDIO\gdio.common.objects.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
