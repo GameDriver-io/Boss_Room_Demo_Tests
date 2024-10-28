@@ -28,9 +28,6 @@ E:\Backup\GDIO\Tests\Boss_Room_Demo_Tests\Boss_Room_Tests\bin\Debug\gdio.common.
 E:\Backup\GDIO\Tests\Boss_Room_Demo_Tests\Boss_Room_Tests\bin\Debug\gdio.plugin.serializer.dll
 E:\Backup\GDIO\Tests\Boss_Room_Demo_Tests\Boss_Room_Tests\bin\Debug\gdio.unity_api.dll
 E:\Backup\GDIO\Tests\Boss_Room_Demo_Tests\Boss_Room_Tests\bin\Debug\nunit.framework.dll
-E:\Backup\GDIO\Tests\Boss_Room_Demo_Tests\Boss_Room_Tests\bin\Debug\gdio.common.objects.pdb
-E:\Backup\GDIO\Tests\Boss_Room_Demo_Tests\Boss_Room_Tests\bin\Debug\gdio.plugin.serializer.pdb
-E:\Backup\GDIO\Tests\Boss_Room_Demo_Tests\Boss_Room_Tests\bin\Debug\gdio.unity_api.pdb
 E:\Backup\GDIO\Tests\Boss_Room_Demo_Tests\Boss_Room_Tests\bin\Debug\nunit.framework.xml
 E:\Backup\GDIO\Tests\Boss_Room_Demo_Tests\Boss_Room_Tests\obj\Debug\Boss_Room_Tests.csproj.AssemblyReference.cache
 E:\Backup\GDIO\Tests\Boss_Room_Demo_Tests\Boss_Room_Tests\obj\Debug\Boss_Room_Tests.csproj.CoreCompileInputs.cache

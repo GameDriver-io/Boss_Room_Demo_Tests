@@ -13,11 +13,14 @@ namespace DemoTest
     public class UnitTest
     {
 
-        private static string target = "IDE";
-        //private string target = "standalone";
+        //private static string target = "IDE";
+        private static string target = "standalone";
+
+        private static string host = "192.168.68.54";
+        //static string host = "localhost";
 
         private static string platform = "desktop";
-        //private statuc string platform = "mobile";
+        //private static string platform = "mobile";
 
         private static string gameMode = "offline";
         //public string gameMode = "online";
@@ -26,6 +29,7 @@ namespace DemoTest
         //private static string exePath = "c:\Path\To\Game.exe";
 
         //These parameters can be used to override settings used to test when running from the NUnit command line
+        public string testHost = TestContext.Parameters.Get("Host", host);
         public string testMode = TestContext.Parameters.Get("Mode", target);
         public string pathToExe = TestContext.Parameters.Get("pathToExe", exePath);
         public string lobbyMode = TestContext.Parameters.Get("lobby", gameMode);
@@ -47,16 +51,16 @@ namespace DemoTest
                 if (pathToExe != null)
                 {
                     ApiClient.Launch(pathToExe);
-                    api.Connect("localhost", 19734, false, 30);
+                    api.Connect(testHost, 19734, false, 30);
                 }
 
                 // If no executable path was given, we will attempt to connect to the Unity editor and initiate Play mode
                 else if (testMode == "IDE")
                 {
-                    api.Connect("localhost", 19734, true, 30);
+                    api.Connect(testHost, 19734, true, 30);
                 }
                 // Otherwise, attempt to connect to an already playing game
-                else api.Connect("localhost");
+                else api.Connect(testHost);
 
             }
             catch (Exception e)
@@ -79,7 +83,17 @@ namespace DemoTest
             
             api.Wait(3000);
         }
-        
+
+        [OneTimeTearDown]
+        public void Disconnect()
+        {
+            // Disconnect the GameDriver client from the agent
+            api.Wait(3000);
+            api.DisableHooks(HookingObject.ALL);
+            api.Wait(2000);
+            api.Disconnect();
+            api.Wait(2000);
+        }
 
         [Test, Order(1)]
         public void T01_Female_Tank_Class_Smoke_Tests()
@@ -695,6 +709,10 @@ namespace DemoTest
                 api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='HowToPlayPopupPanel']/*[@name='Confirmation Button']", 30);
                 api.Wait(3000);
 
+
+                //Enable God Mode Cheat
+                api.CallMethod("//*[@name='DebugCheatsManager']/fn:component('Unity.BossRoom.DebugCheats.DebugCheatsManager')", "ToggleGodMode");
+
                 //Kill All Enemies
                 KillEnemies();
 
@@ -747,21 +765,18 @@ namespace DemoTest
 
             });
         }
-        
-        [OneTimeTearDown]
-        public void Disconnect()
+
+        [Test, Order(99)]
+        public void ScreenshotTest()
         {
-            // Disconnect the GameDriver client from the agent
-            api.Wait(3000);
-            api.DisableHooks(HookingObject.ALL);
             api.Wait(2000);
-            api.Disconnect();
+            api.CaptureScreenshot("Test.jpg", false, true);
             api.Wait(2000);
         }
 
         public void KillSelf()
         {
-            api.CallMethod("//Player[@name='PlayerAvatar0']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.Character.ServerCharacter')", "ReceiveHP", new object[] { new HPathObject("//Player[@name='PlayerAvatar0']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.Character.ServerCharacter')"), -1200 });
+            api.CallMethod("//Player[@name='PlayerAvatar0']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.Character.ServerCharacter')", "ReceiveHP", new object[] { new gdio.common.lookup.HPathObject("//Player[@name='PlayerAvatar0']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.Character.ServerCharacter')"), -1200 });
         }
 
         public void StartOnlineLobby()
@@ -833,7 +848,7 @@ namespace DemoTest
 
             api.KeyPress(new KeyCode[] { KeyCode.Slash }, 30);
             api.Wait(1000);
-            api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='CheatsPopupPanel']/*[@name='ToggleGodModeButton']", 30);
+            //api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='CheatsPopupPanel']/*[@name='ToggleGodModeButton']", 30);
             api.Wait(2000);
             api.KeyPress(new KeyCode[] { KeyCode.Slash }, 30);
             api.Wait(5000);
