@@ -1,0 +1,4 @@
+*.pdb
+*.mdb
+/bin/Debug/*
+*/obj/Debug/*
