@@ -355,3 +355,4 @@ MigrationBackup/
 *.png
 GDIOResults/
 *.jpg
+*/bin/
