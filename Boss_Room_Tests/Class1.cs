@@ -13,11 +13,11 @@ namespace DemoTest
     public class UnitTest
     {
 
-        //private static string target = "IDE";
-        private static string target = "standalone";
+        private static string target = "IDE";
+        //private static string target = "standalone";
 
-        private static string host = "192.168.68.54";
-        //static string host = "localhost";
+        //private static string host = "192.168.68.54";
+        static string host = "localhost";
 
         private static string platform = "desktop";
         //private static string platform = "mobile";
@@ -73,7 +73,8 @@ namespace DemoTest
                 Console.WriteLine($"Type: {e.type.ToString()}\r\nCondition: {e.condition}\r\nStackTrace: {e.stackTrace}");
             };
 
-            api.EnableHooks(HookingObject.ALL);
+            api.EnableHooks(HookingObject.KEYBOARD);
+            api.EnableHooks(HookingObject.MOUSE);
 
             if (gameMode == "online")
             {
@@ -91,6 +92,10 @@ namespace DemoTest
             api.Wait(3000);
             api.DisableHooks(HookingObject.ALL);
             api.Wait(2000);
+            if (testMode == "IDE")
+            {
+                api.ToggleEditorPlay();
+            }
             api.Disconnect();
             api.Wait(2000);
         }
@@ -130,7 +135,7 @@ namespace DemoTest
 
                 //Get the current animation and validate it is correct
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreNotEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
+                Assert.That("Attacks.Attack1" == currentAnim, "Incorrect Animation Playing");
                 api.Wait(3000);
 
                 //Press the "2" key to activate the second ability
@@ -140,7 +145,7 @@ namespace DemoTest
                 //Get the current animation and validate it is correct
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
                 api.Wait(1000);
-                Assert.AreEqual("Attacks.TankShieldBuff (start)", currentAnim, "Incorrect Animation Playing");
+                Assert.That("Attacks.TankShieldBuff (start)" == currentAnim, "Incorrect Animation Playing");
                 api.Wait(12000);
 
                 //Kill player by setting hp to 0
@@ -326,14 +331,14 @@ namespace DemoTest
 
                 //Get the current animation and validate it is correct
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
+                Assert.That("Attacks.Attack1" == currentAnim, "Incorrect Animation Playing");
                 api.Wait(3000);
 
                 //Press the "2" key to activate the second ability
                 api.KeyPress(new KeyCode[] { KeyCode.Alpha2 }, 120);
                 api.Wait(400);
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.Archer Charged Shot (start)", currentAnim, "Incorrect Animation Playing");
+                Assert.That("Attacks.Archer Charged Shot (start)" == currentAnim, "Incorrect Animation Playing");
                 api.Wait(3000);
 
                 //Press the "3" key then click to activate the third ability
@@ -401,14 +406,14 @@ namespace DemoTest
 
                 //Get the current animation and validate it is correct
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
+                Assert.That("Attacks.Attack1" == currentAnim, "Incorrect Animation Playing");
                 api.Wait(3000);
 
                 //Press the "2" key to activate the second ability
                 api.KeyPress(new KeyCode[] { KeyCode.Alpha2 }, 120);
                 api.Wait(400);
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.SkillHeal", currentAnim, "Incorrect Animation Playing");
+                Assert.That("Attacks.SkillHeal" == currentAnim, "Incorrect Animation Playing");
                 api.Wait(3000);
 
                 //Kill player by setting hp to 0
@@ -465,14 +470,14 @@ namespace DemoTest
 
                 //Get the current animation and validate it is correct
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
+                Assert.That("Attacks.Attack1" == currentAnim, "Incorrect Animation Playing");
                 api.Wait(3000);
 
                 //Press the "2" key to activate the second ability
                 api.KeyPress(new KeyCode[] { KeyCode.Alpha2 }, 120);
                 api.Wait(400);
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.SkillHeal", currentAnim, "Incorrect Animation Playing");
+                Assert.That("Attacks.SkillHeal" == currentAnim, "Incorrect Animation Playing");
                 api.Wait(3000);
 
                 //Kill player by setting hp to 0
@@ -526,7 +531,7 @@ namespace DemoTest
 
                 //Get the current animation and validate it is correct
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.Attack1", currentAnim, "Incorrect Animation Playing");
+                Assert.That("Attacks.Attack1" == currentAnim, "Incorrect Animation Playing");
                 api.Wait(3000);
 
                 //Press the "2" key to activate the second ability
@@ -535,7 +540,7 @@ namespace DemoTest
 
                 //Get the current animation and validate it is correct
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.Dash Attack (start)", currentAnim, "Incorrect Animation Playing");
+                Assert.That("Attacks.Dash Attack (start)" == currentAnim, "Incorrect Animation Playing");
                 api.Wait(3000);
 
                 //Press the "3" key to activate the third ability
@@ -544,7 +549,7 @@ namespace DemoTest
 
                 //Get the current animation and validate it is correct
                 currentAnim = api.CallMethod<String>("//*[@name='AvatarGraphics0']/fn:component('UnityEngine.Animator')", "GetAnimatorStateName", new object[] { 1, true });
-                Assert.AreEqual("Attacks.Buff1", currentAnim, "Incorrect Animation Playing");
+                Assert.That("Attacks.Buff1" == currentAnim, "Incorrect Animation Playing");
                 api.Wait(5000);
 
                 //Kill player by setting hp to 0
@@ -673,7 +678,7 @@ namespace DemoTest
 
             //Validate player HP did change
             int endHp = api.GetObjectFieldValue<int>("//Player[@name='PlayerAvatar0']/fn:component('Unity.BossRoom.Gameplay.GameplayObjects.NetworkHealthState')/@HitPoints/@Value");
-            Assert.Less(endHp, startingHp, "Player did not Recieve Damage!");
+            Assert.That(endHp < startingHp, "Player did not Recieve Damage!");
 
             KillSelf();
         }
@@ -700,18 +705,20 @@ namespace DemoTest
                 api.Wait(4000);
 
                 //Close cheats panel
-                api.WaitForObject("/*[@name='BossRoomHudCanvas']/*[@name='CheatsPopupPanel']");
-                api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='CheatsPopupPanel']/*[@name='Cancel Button']", 30);
-                api.Wait(3000);
+                //api.WaitForObject("/*[@name='BossRoomHudCanvas']/*[@name='CheatsPopupPanel']");
+                //api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='CheatsPopupPanel']/*[@name='Cancel Button']", 30);
+                //api.Wait(3000);
 
                 //Close How To Play Panel
-                api.WaitForObject("/*[@name='BossRoomHudCanvas']/*[@name='HowToPlayPopupPanel']");
+                api.WaitForObject("/*[@name='BossRoomHudCanvas']/*[@name='HowToPlayPopupPanel']/*[@name='Confirmation Button']");
+                api.MouseMoveToObject("/*[@name='BossRoomHudCanvas']/*[@name='HowToPlayPopupPanel']/*[@name='Confirmation Button']", 30);
+                api.Wait(1000);
                 api.ClickObject(MouseButtons.LEFT, "/*[@name='BossRoomHudCanvas']/*[@name='HowToPlayPopupPanel']/*[@name='Confirmation Button']", 30);
                 api.Wait(3000);
 
 
                 //Enable God Mode Cheat
-                api.CallMethod("//*[@name='DebugCheatsManager']/fn:component('Unity.BossRoom.DebugCheats.DebugCheatsManager')", "ToggleGodMode");
+                //api.CallMethod("//*[@name='DebugCheatsManager']/fn:component('Unity.BossRoom.DebugCheats.DebugCheatsManager')", "ToggleGodMode");
 
                 //Kill All Enemies
                 KillEnemies();

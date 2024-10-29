@@ -14,12 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,10 +24,14 @@
               "RelativeDocumentMoniker": "Boss_Room_Tests\\Class1.cs",
               "ToolTip": "E:\\Backup\\GDIO\\Tests\\Boss_Room_Demo_Tests\\Boss_Room_Tests\\Class1.cs",
               "RelativeToolTip": "Boss_Room_Tests\\Class1.cs",
-              "ViewState": "AQIAAEIAAAAAAAAAAAAAAFIAAAAMAAAA",
+              "ViewState": "AQIAAKIAAAAAAAAAAAAAAGAAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-11-07T17:45:45.197Z",
+              "WhenOpened": "2024-10-29T00:08:38.356Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
             }
           ]
         }
