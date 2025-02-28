@@ -19,7 +19,7 @@ namespace DemoTest
         //private static string host = "192.168.68.54";
         static string host = "localhost";
 
-        private static string platform = "desktop";
+        //private static string platform = "desktop";
         //private static string platform = "mobile";
 
         private static string gameMode = "offline";
@@ -33,8 +33,9 @@ namespace DemoTest
         public string testMode = TestContext.Parameters.Get("Mode", target);
         public string pathToExe = TestContext.Parameters.Get("pathToExe", exePath);
         public string lobbyMode = TestContext.Parameters.Get("lobby", gameMode);
+        public int testPort = TestContext.Parameters.Get("testPort", 19734);
 
-        string player = "//Player[@name='PlayerAvatar0']";
+        //string player = "//Player[@name='PlayerAvatar0']";
         string currentAnim;
 
         ApiClient api;
@@ -51,16 +52,16 @@ namespace DemoTest
                 if (pathToExe != null)
                 {
                     ApiClient.Launch(pathToExe);
-                    api.Connect(testHost, 19734, false, 30);
+                    api.Connect(testHost, testPort, false, 30);
                 }
 
                 // If no executable path was given, we will attempt to connect to the Unity editor and initiate Play mode
                 else if (testMode == "IDE")
                 {
-                    api.Connect(testHost, 19734, true, 30);
+                    api.Connect(testHost, testPort, true, 30);
                 }
                 // Otherwise, attempt to connect to an already playing game
-                else api.Connect(testHost);
+                else api.Connect(testHost, testPort, false, 60);
 
             }
             catch (Exception e)
@@ -94,7 +95,7 @@ namespace DemoTest
             api.Wait(2000);
             if (testMode == "IDE")
             {
-                api.ToggleEditorPlay();
+                api.StopEditorPlay();
             }
             api.Disconnect();
             api.Wait(2000);
